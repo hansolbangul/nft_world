@@ -50,9 +50,10 @@ const Modal = styled.div`
 
 function World() {
   const isDark = useRecoilValue(isDarkAtom);
-  const [worldFn, setWorldFn] = useRecoilValue(isLocation)
+  const [isModal, setIsModal] = useState(false)
+  const [modalArr, setModalArr] = useState()
   const [array, setArray] = useState()
-  const [land, setLand] = useState([
+  const [land] = useState([
     { name: 'south korea', data: southKorea }, { name: 'canada', data: canada }, { name: 'china', data: china }, { name: 'india', data: india }, { name: 'italy', data: italy }, { name: 'japan', data: japan }, { name: 'ukraine', data: ukraine }, { name: 'usa', data: usa }, { name: 'spain', data: spain }
   ])
 
@@ -64,7 +65,8 @@ function World() {
     console.log(event)
     const { target: { ariaLabel, id } } = event
     if (land.filter(e => e.name === ariaLabel.toLowerCase()).length > 0) {
-      setArray(land.filter(e => e.name === ariaLabel.toLowerCase())[0].data)
+      setIsModal(true)
+      setModalArr(land.filter(e => e.name === ariaLabel.toLowerCase())[0].data)
     } else {
       console.log('not found')
     }
@@ -80,7 +82,7 @@ function World() {
           else return 'svg-map__location'
         }} /> */}
         {array ? <SVGMap map={array} className='svg-map_world' locationClassName='svg-map__location_world' onLocationClick={onLocationClick} /> : 'Loading'}
-        <Modal>hello</Modal>
+        {isModal && <Modal><SVGMap map={modalArr} className='svg-map_world' locationClassName='svg-map__location_world' onLocationClick={onLocationClick} /></Modal>}
       </Box>
     </Container>
   );
