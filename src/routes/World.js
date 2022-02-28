@@ -1,55 +1,75 @@
-import { useQuery } from 'react-query';
-import { Link } from 'react-router-dom';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { fetchCoins } from './api';
 import { isDarkAtom } from '../atoms';
 import { SVGMap, CheckboxSVGMap, RadioSVGMap } from 'react-svg-map';
 import "react-svg-map/lib/index.css";
-import "react-svg-map/lib/index1.css";
-import southKorea from '@svg-maps/south-korea'
 import "../styles.css";
 import { useState } from 'react';
 
+import canada from "@svg-maps/canada"
+import china from "@svg-maps/china"
+import india from "@svg-maps/india"
+import italy from "@svg-maps/italy"
+import japan from "@svg-maps/japan"
+import southKorea from '@svg-maps/south-korea'
+import spain from "@svg-maps/spain"
+import sweden from "@svg-maps/sweden"
+import taiwan from "@svg-maps/taiwan"
+import ukraine from "@svg-maps/ukraine"
+import usa from "@svg-maps/usa"
+import uzbekistan from "@svg-maps/uzbekistan"
+import world from "@svg-maps/world"
+
 const Container = styled.div`
-  padding: 0px 20px;
-`;
-
-const Header = styled.header`
-  height: 15vh;
+  padding-top: 100px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
 `;
 
-const Title = styled.h1`
-  font-size: 48px;
-  color: ${(props) => props.theme.accentColor};
-`;
+const Box = styled.div`
+  width: 100%;
+  height: 80vh;
+  padding: 1rem;
+`
 
+const Menu = styled.div`
+  width: 18%;
+  height: 80vh;
+  border: 1px solid gray;
+  border-radius: 20px;
+  overflow: scroll;
+  padding: 1rem;
+`
+
+const Land = styled.div`
+  width: 100%;
+  height: 50px;
+  padding: 1rem;
+  text-align: center;
+`
 
 function World() {
   const isDark = useRecoilValue(isDarkAtom);
-  const [array, setArray] = useState(southKorea)
+  const [land, setLand] = useState([
+    'southKorea','canada','china','india','italy','japan','sweden','taiwan','ukraine','usa','uzbekistan','spain',
+  ])
+  const [array, setArray] = useState(world)
   
   function onLocationClick(event) {
-    console.log(event.target.id)
-    console.log(event.target)
+    const {target: { ariaLabel, id }} = event
+    console.log(ariaLabel,id)
   }
-  function onChange(event) {
-    console.log(event)
-  }
-  // console.log(array)
   const Tag = array
-
-  // Tag.locations.array(e => e.name = 'sejong' ? e.)
   
   return (
     <Container>
-      <SVGMap map={Tag} locationClassName={(e) => {
-        if (e.name === "Busan") return 'svg-map__location__select'
-        else return 'svg-map__location'
-      }} />
+      <Box>
+        {/* <SVGMap map={Tag} locationClassName={(e) => {
+          if (e.name === "Busan") return 'svg-map__location__select'
+          else return 'svg-map__location'
+        }} /> */}
+        <SVGMap map={Tag} className='svg-map_world' locationClassName='svg-map__location_world' onLocationClick={onLocationClick} />
+      </Box>
     </Container>
   );
 }

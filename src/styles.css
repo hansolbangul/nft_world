@@ -14,3 +14,19 @@
     .svg-map__location__select[aria-checked=true] {
       fill: #f4bc44; }
       
+.svg-map_world {
+  width: 100%;
+  height: auto;
+  stroke: #666;
+  stroke-width: 1;
+  stroke-linecap: round;
+  stroke-linejoin: round; }
+  .svg-map__location_world {
+    fill: #43e788;
+    cursor: pointer; }
+    .svg-map__location_world:focus, .svg-map__location_world:hover {
+      fill: #83e0aa;
+      outline: 0; }
+    .svg-map__location_world[aria-checked=true] {
+      fill: #f4bc44; }
+      

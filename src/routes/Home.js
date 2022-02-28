@@ -12,35 +12,8 @@ import "../styles.css";
 
 const Container = styled.div`
   padding: 0px 20px;
+  padding-top: 100px;
 `;
-
-const Header = styled.header`
-  height: 15vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-// const Coin = styled.li`
-//   background-color: ${(props) => props.theme.cardBgColor};
-//   color: ${(props) => props.theme.textColor};
-//   border-radius: 15px;
-//   margin-bottom: 10px;
-//   border: 1px solid white;
-//   a {
-//     display: flex;
-//     align-items: center;
-//     padding: 20px;
-//     transition: color 0.2s ease-in;
-//   }
-//   &:hover {
-//     a {
-//       color: ${(props) => props.theme.accentColor};
-//     }
-//   }
-// `;
-
-
 
 function Home() {
   const isDark = useRecoilValue(isDarkAtom);
@@ -50,8 +23,6 @@ function Home() {
   // console.log(isLoading, data);
   return (
     <Container>
-      <Link to='/world' >china</Link>
-      <Outlet />
     </Container>
   );
 }
