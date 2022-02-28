@@ -38,13 +38,13 @@ const Box = styled.div`
 
 const Modal = styled.div`
   width: 30vw;
-  height: 80%;
+  height: 88%;
   background-color: #fff;
   border-radius: 20px;
   position: fixed;
-  top: 50%;
+  top: 100px;
   right: 0;
-  transform: translate(0, -50%);
+  /* transform: translate(0, -50%); */
   padding: 1.25rem;
 `
 
