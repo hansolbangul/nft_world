@@ -4,6 +4,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { darkTheme, lightTheme } from './theme';
 import { isDarkAtom } from './atoms';
 import { useRecoilValue } from 'recoil';
+import { Header } from './component/Header';
 
 // react 쓸데없는 padding이랑 margin 제거
 const GlobalStyle = createGlobalStyle`
@@ -77,6 +78,7 @@ function App() {
     <>
       <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
         <GlobalStyle />
+        <Header />
         <Router />
         <ReactQueryDevtools initialIsOpen={true} />
       </ThemeProvider>

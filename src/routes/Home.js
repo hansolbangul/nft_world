@@ -40,10 +40,6 @@ const Header = styled.header`
 //   }
 // `;
 
-const Title = styled.h1`
-  font-size: 48px;
-  color: ${(props) => props.theme.accentColor};
-`;
 
 
 function Home() {
@@ -54,10 +50,7 @@ function Home() {
   // console.log(isLoading, data);
   return (
     <Container>
-      <Header>
-        test
-      </Header>
-      <Link to='/china' >china</Link>
+      <Link to='/world' >china</Link>
       <Outlet />
     </Container>
   );
