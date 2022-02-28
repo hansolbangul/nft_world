@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 const Nav = styled.div`
+  z-index: 99;
   width: 100%;
   height: 80px;
   box-shadow: 1px 1px 1px 1px #dddbdb;

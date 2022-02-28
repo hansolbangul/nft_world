@@ -10,3 +10,8 @@ export const isDarkAtom = atom({
   key: 'isDark',
   default: false,
 });
+
+export const isLocation = atom({
+  key: 'isLocation',
+  default: [],
+});

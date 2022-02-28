@@ -1,10 +1,11 @@
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { isDarkAtom } from '../atoms';
+import { isDarkAtom, isLocation } from '../atoms';
 import { SVGMap, CheckboxSVGMap, RadioSVGMap } from 'react-svg-map';
+import { IoArrowBackSharp } from "react-icons/io5";
 import "react-svg-map/lib/index.css";
 import "../styles.css";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import canada from "@svg-maps/canada"
 import china from "@svg-maps/china"
@@ -19,6 +20,8 @@ import ukraine from "@svg-maps/ukraine"
 import usa from "@svg-maps/usa"
 import uzbekistan from "@svg-maps/uzbekistan"
 import world from "@svg-maps/world"
+import { Outlet } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   padding-top: 100px;
@@ -30,36 +33,44 @@ const Box = styled.div`
   width: 100%;
   height: 80vh;
   padding: 1rem;
+  position: relative;
 `
 
-const Menu = styled.div`
-  width: 18%;
-  height: 80vh;
-  border: 1px solid gray;
+const Modal = styled.div`
+  width: 30vw;
+  height: 80%;
+  background-color: #fff;
   border-radius: 20px;
-  overflow: scroll;
-  padding: 1rem;
-`
-
-const Land = styled.div`
-  width: 100%;
-  height: 50px;
-  padding: 1rem;
-  text-align: center;
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translate(0, -50%);
+  padding: 1.25rem;
 `
 
 function World() {
   const isDark = useRecoilValue(isDarkAtom);
+  const [worldFn, setWorldFn] = useRecoilValue(isLocation)
+  const [array, setArray] = useState()
   const [land, setLand] = useState([
-    'southKorea','canada','china','india','italy','japan','sweden','taiwan','ukraine','usa','uzbekistan','spain',
+    { name: 'south korea', data: southKorea }, { name: 'canada', data: canada }, { name: 'china', data: china }, { name: 'india', data: india }, { name: 'italy', data: italy }, { name: 'japan', data: japan }, { name: 'ukraine', data: ukraine }, { name: 'usa', data: usa }, { name: 'spain', data: spain }
   ])
-  const [array, setArray] = useState(world)
+
+  useEffect(() => {
+    setArray(world)
+  }, [])
   
   function onLocationClick(event) {
-    const {target: { ariaLabel, id }} = event
-    console.log(ariaLabel,id)
+    console.log(event)
+    const { target: { ariaLabel, id } } = event
+    if (land.filter(e => e.name === ariaLabel.toLowerCase()).length > 0) {
+      setArray(land.filter(e => e.name === ariaLabel.toLowerCase())[0].data)
+    } else {
+      console.log('not found')
+    }
+    // console.log(ariaLabel.toLowerCase())
   }
-  const Tag = array
+  console.log(array)
   
   return (
     <Container>
@@ -68,7 +79,8 @@ function World() {
           if (e.name === "Busan") return 'svg-map__location__select'
           else return 'svg-map__location'
         }} /> */}
-        <SVGMap map={Tag} className='svg-map_world' locationClassName='svg-map__location_world' onLocationClick={onLocationClick} />
+        {array ? <SVGMap map={array} className='svg-map_world' locationClassName='svg-map__location_world' onLocationClick={onLocationClick} /> : 'Loading'}
+        <Modal>hello</Modal>
       </Box>
     </Container>
   );
