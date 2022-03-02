@@ -13,22 +13,22 @@ import {
   SiInstagram,
   SiTelegram,
 } from 'react-icons/si';
-import { IoClose } from 'react-icons/io5';
+// import { IoClose } from 'react-icons/io5';
 
-import canada from '@svg-maps/canada';
-import china from '@svg-maps/china';
-import india from '@svg-maps/india';
-import italy from '@svg-maps/italy';
-import japan from '@svg-maps/japan';
-import southKorea from '@svg-maps/south-korea';
-import spain from '@svg-maps/spain';
-import sweden from '@svg-maps/sweden';
-import taiwan from '@svg-maps/taiwan';
-import ukraine from '@svg-maps/ukraine';
-import usa from '@svg-maps/usa';
-import uzbekistan from '@svg-maps/uzbekistan';
-import world from '@svg-maps/world';
-import { useOutletContext, useParams } from 'react-router';
+// import canada from '@svg-maps/canada';
+// import china from '@svg-maps/china';
+// import india from '@svg-maps/india';
+// import italy from '@svg-maps/italy';
+// import japan from '@svg-maps/japan';
+// import southKorea from '@svg-maps/south-korea';
+// import spain from '@svg-maps/spain';
+// import sweden from '@svg-maps/sweden';
+// import taiwan from '@svg-maps/taiwan';
+// import ukraine from '@svg-maps/ukraine';
+// import usa from '@svg-maps/usa';
+// import uzbekistan from '@svg-maps/uzbekistan';
+// import world from '@svg-maps/world';
+import { useParams } from 'react-router';
 
 const Container = styled.div`
   padding-top: 100px;
@@ -44,7 +44,7 @@ const Box = styled.div`
 `;
 
 const Modal = styled.div`
-  width: 24vw;
+  width: 16.25rem;
   /* height: 54%; */
   background-color: #fff;
   border-radius: 20px;
